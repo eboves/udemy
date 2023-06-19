@@ -13,13 +13,21 @@ symbols_input = int(input('How many symbols would you like to add?\n'))
 sort_list = []
 
 for letter in range(0, (letter_input)):
-    sort_list.append(letters[random.randint(0, len(letters)-1)])
+    sort_list.append(random.choice(letters))
 
 for numb in range(0, (num_input)):
-    sort_list.append(num[random.randint(0, len(num)-1)])
+    sort_list.append(random.choice(num))
 
 for symb in range(0, (symbols_input)):
-    sort_list.append(symbols[random.randint(0, len(symbols)-1)])
-
+    sort_list.append(random.choice(symbols))
 
 print(sort_list)
+random.shuffle(sort_list)
+print(sort_list)
+
+password = ""
+
+for char in str(sort_list):
+    password += char
+
+print(f"Your Password is: {password}")
