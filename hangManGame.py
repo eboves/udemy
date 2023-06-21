@@ -18,18 +18,21 @@ end_of_game = False
 while not end_of_game:
     guess = input("Guess a letter: ").lower()
 
+    if guess in display:
+        print("Already picked!")
+
     for l in range(0, len(chosen_word)):
         if guess == chosen_word[l]:
             display[l] = chosen_word[l]
-            print("right")
     if guess not in chosen_word[l]:
         lives -= 1
-        print(lives)
-    if lives == 0:
-        print("You Lost!")
-        break
+        if lives == 0:
+            print("You Lost!")
+            end_of_game = True
+
+
+    print(f"{' '.join(display)}")
+
     if "_" not in display:
         end_of_game = True
         print("You WON!.")
-
-print(display)
