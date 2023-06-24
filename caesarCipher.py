@@ -1,8 +1,8 @@
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
+#direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+#text = input("Type your message:\n").lower() 
+#shift = int(input("Type the shift number:\n"))
 
 #TODO-1: Create a function called 'encrypt' that takes the 'text' and 'shift' as inputs.
 
@@ -34,12 +34,18 @@ def encrypt(plain_text, shift_count):
 
 encrypt(text, shift)
 
-text_ = "mjqqt"
-shift_ = 5
 
 #TODO-1: Create a different function called 'decrypt' that takes the 'text' and 'shift' as inputs.
 def decrypt(plain_text, shift_amount):
+    decrypty = ""
+    for letter in plain_text:
+        letter_index = alphabet.index(letter)
+        new_index = letter_index - shift_amount
+        decrypty_word = alphabet[new_index]
+        decrypty += decrypty_word
+    print(decrypty)
 
+decrypt(text_, shift_)
 
   #TODO-2: Inside the 'decrypt' function, shift each letter of the 'text' *backwards* in the alphabet by the shift amount and print the decrypted text.  
   #e.g. 
