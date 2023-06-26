@@ -5,29 +5,36 @@ print(art.logo)
 
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
+keep_playing = input("Type 'Y' to keep playing and 'N' to stop") 
 
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
+keep_running = True
 
-def caesar(direction, text, shift):
-    if shift % 26 > 1:
-        shift = shift%26
-    cipher_text = ""
-    if direction == "decode":
-        shift *= -1
-    for letter in text:
-        if letter not in alphabet:
-            cipher_text += letter
-        else:
-            position = alphabet.index(letter)
-            new_word_shift = position + shift
-            new_word = alphabet[new_word_shift]
-            cipher_text += new_word
+while keep_running:
 
-    print(f"You {direction} word is {cipher_text}")
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+    text = input("Type your message:\n").lower()
+    shift = int(input("Type the shift number:\n"))
 
-caesar(direction=direction, text=text, shift=shift)
+    def caesar(direction, text, shift):
+        if shift % 26 > 1:
+            shift = shift%26
+        cipher_text = ""
+        if direction == "decode":
+            shift *= -1
+        for letter in text:
+            if letter not in alphabet:
+                cipher_text += letter
+            else:
+                position = alphabet.index(letter)
+                new_word_shift = position + shift
+                new_word = alphabet[new_word_shift]
+                cipher_text += new_word
+
+        print(f"You {direction} word is {cipher_text}")
+
+        
+ 
+    caesar(direction=direction, text=text, shift=shift)
 # 
 # 
 # #TODO-1: Create a function called 'encrypt' that takes the 'text' and 'shift' as inputs.
