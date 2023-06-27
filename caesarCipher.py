@@ -5,37 +5,39 @@ print(art.logo)
 
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-keep_playing = input("Type 'Y' to keep playing and 'N' to stop") 
 
-keep_running = True
+keep_running = "yes"
 
-while keep_running:
+def caesar(direction, text, shift):
+     if shift % 25 > 1:
+         shift = shift%25
+     cipher_text = ""
+     if direction == "decode":
+         shift *= -2
+     for letter in text:
+         if letter not in alphabet:
+             cipher_text += letter
+         else:
+             position = alphabet.index(letter)
+             new_word_shift = position + shift
+             new_word = alphabet[new_word_shift]
+             cipher_text += new_word
+
+     print(f"You {direction} word is {cipher_text}")
+while keep_running == "yes":
 
     direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
     text = input("Type your message:\n").lower()
     shift = int(input("Type the shift number:\n"))
-
-    def caesar(direction, text, shift):
-        if shift % 26 > 1:
-            shift = shift%26
-        cipher_text = ""
-        if direction == "decode":
-            shift *= -1
-        for letter in text:
-            if letter not in alphabet:
-                cipher_text += letter
-            else:
-                position = alphabet.index(letter)
-                new_word_shift = position + shift
-                new_word = alphabet[new_word_shift]
-                cipher_text += new_word
-
-        print(f"You {direction} word is {cipher_text}")
-
-        
  
     caesar(direction=direction, text=text, shift=shift)
-# 
+
+    keep_playing = input("Type 'yes' to keep playing and 'No' to stop: \n").lower() 
+    if keep_playing == "no":
+        break
+
+
+print("Thank you for playing!")
 # 
 # #TODO-1: Create a function called 'encrypt' that takes the 'text' and 'shift' as inputs.
 # 
