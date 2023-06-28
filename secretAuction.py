@@ -2,9 +2,11 @@
 
 bidders = {}
 keep_playing = True
+# This code add and look for the highest bidder.
 def secret_action(name_bidder, bid_amount):
     bidders[name_bidder] = bid_amount
     holder = 0
+
     for key in bidders:
         if bidders[key] > holder:
             holder = bidders[key]
