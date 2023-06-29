@@ -28,3 +28,12 @@ operations = {
 
 for operants in operations:
     print(operants)
+
+operation_symbol = input("Please select an operation you want to perform: ")
+
+if operation_symbol == "+":
+    function = operations[operation_symbol]
+    answer = function(num1, num1)
+    
+    
+print(f"{num1} {operation_symbol} {num2} = {answer}")
