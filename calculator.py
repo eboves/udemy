@@ -23,8 +23,8 @@ operations = {
     "/": divide,
 }
 
-#num1 = int(input("Please enter the First number: "))
-#num2 = int(input("Please enter the Second number: "))
+num1 = int(input("Please enter the First number: "))
+num2 = int(input("Please enter the Second number: "))
 
 for operants in operations:
     print(operants)
@@ -32,8 +32,19 @@ for operants in operations:
 operation_symbol = input("Please select an operation you want to perform: ")
 
 if operation_symbol == "+":
-    function = operations[operation_symbol]
-    answer = function(num1, num1)
+    func = operations[operation_symbol]
+    answer = func(num1, num2)
+elif operation_symbol == "-":
+    func = operations[operation_symbol]
+    answer = func(num1, num2)
+elif operation_symbol == "*":
+    func = operations[operation_symbol]
+    answer = func(num1, num2)
+elif operation_symbol == "/":
+    func = operations[operation_symbol]
+    answer = func(num1, num2)
+else:
+    print("Please enter a valid Option.")
     
     
 print(f"{num1} {operation_symbol} {num2} = {answer}")
