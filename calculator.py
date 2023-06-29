@@ -24,14 +24,26 @@ operations = {
 }
 
 num1 = int(input("Please enter the First number: "))
-num2 = int(input("Please enter the Second number: "))
 
 for operants in operations:
     print(operants)
 
-operation_symbol = input("Please select an operation you want to perform: ")
+operation_symbol = input("Select an operation")
+num2 = int(input("Please enter the next number: "))
 calculation_function = operations[operation_symbol]
-answer = calculation_function(num1, num2)
+first_answer = calculation_function(num1, num2)
+
+print(f"{num1} {operation_symbol} {num2} = {first_answer}")
+
+operation_symbol = input("Select another operation: ")
+num3 = int(input("Please enter the next number: "))
+calculation_function = operations[operation_symbol]
+second_answer = calculation_function(num1, num2)
+
+print(f"{first_answer} {operation_symbol} {num3} = {second_answer}")
+
+   
+        
 #if operation_symbol == "+":
 #    func = operations[operation_symbol]
 #    answer = func(num1, num2)
@@ -48,4 +60,3 @@ answer = calculation_function(num1, num2)
 #    print("Please enter a valid Option.")
 #    
     
-print(f"{num1} {operation_symbol} {num2} = {answer}")
