@@ -23,27 +23,30 @@ operations = {
     "/": divide,
 }
 
-num1 = int(input("Please enter the First number: "))
+def calculator():
 
-for operants in operations:
-    print(operants)
+    num1 = int(input("Please enter the First number: "))
 
-operation_symbol = input("Select an operation")
-num2 = int(input("Please enter the next number: "))
-calculation_function = operations[operation_symbol]
-first_answer = calculation_function(num1, num2)
+    for operants in operations:
+        print(operants)
 
-print(f"{num1} {operation_symbol} {num2} = {first_answer}")
+    keep_calculating = True
+    while keep_calculating:
 
-operation_symbol = input("Select another operation: ")
-num3 = int(input("Please enter the next number: "))
-calculation_function = operations[operation_symbol]
-second_answer = calculation_function(num1, num2)
+        operation_symbol = input("Select an operation: ")
+        num2 = int(input("Please enter the next number: "))
+        calculation_function = operations[operation_symbol]
+        answer = calculation_function(num1, num2)
 
-print(f"{first_answer} {operation_symbol} {num3} = {second_answer}")
+        print(f"{num1} {operation_symbol} {num2} = {answer}")
 
-   
-        
+        continue_calculating = input(f"Type 'y' to continue calculating with {answer}, or 'n' to start a new calculation. ")
+        if continue_calculating == 'y':
+            num1 = answer
+        else:
+            keep_calculating = False
+            calculator()
+calculator()
 #if operation_symbol == "+":
 #    func = operations[operation_symbol]
 #    answer = func(num1, num2)
