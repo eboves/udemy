@@ -1,6 +1,5 @@
 from black_jack_logo import logo
 
-#print(logo)
 
 #imports
 import random
@@ -8,10 +7,18 @@ import random
 #Variables
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
+init_game = input("Do you want to play a game of Black Jack? Type 'y' or 'n'.")
+
+#print(logo)
+
+# Print my hand [5,10] and it shows the total amount = 15
+first_card = random.ran
 
 
 
 
+# Shows only computer 1st card 8.
+# Type yes to get another card and no to pass. (this is an input)
 
 
 
