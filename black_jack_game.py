@@ -6,87 +6,120 @@ import random
 
 #Variables
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-
-init_game = input("Do you want to play a game of Black Jack? Type 'y' or 'n' ")
-start_game = True
-my_full_hand = []
-house_full_hand = []
-my_sum = 0
 my_hand = []
-house_hand = []
-
-while start_game:
-    def main():
-        if_yes = input("Do you want to play a game of Black Jack? Type 'y' or 'n' ")
-        play_game(if_yes)
-
-    def my_random_card(card_deck):
-        rand_card = random.randint(0, len(card_deck) - 1)
-        my_full_hand.append(rand_card)
-
-    def house_random_card(card_deck):
-        rand_card = random.randint(0, len(card_deck) - 1)
-        house_full_hand.append(rand_card)
-
-    def sum_of_cards(list_of_cards):
-        """
-        This function is going to print the cards sum
-        """
-        for num in range(0, len(list_of_cards) - 1):
-            num1 = 0
-            num1 = list_of_cards[num]
-            my_sum = num1 + list_of_cards[num + 1] 
-            return my_sum
-    
-    def play_game(response):
-            #computer_final_score = sum_of_cards(my_hand)
-            #my_final_score = sum_of_cards(house_hand)       
-        while response:
-            if response.lower() == 'y':
-                my_random_card(cards)
-
-            else:
-                computer_final_random_card = sum_of_cards(house_random_card(cards))
-                while computer_final_random_card <= 17:
-                    house_random_card(cards)
-                    if computer_final_random_card < 17:
-                        continue
-                    else:
-                        print(f"Your Final Hand Cards: {my_full_hand}, Final Score: {my_final_hand}")
-                        print(f"Computer's Final Hand: {house_full_hand}, Final Score: {computer_final_hand}")
-
-                        if my_final_hand > computer_final_hand:
-                            print("YOU WON!!!")
-                        elif my_final_hand < computer_final_hand:
-                            print("YOU LOST!!!")
-                        else:
-                            print("IT's a DRAW!!!")
-                        
-                        start_game = False        
-
-            
-            # here is when i do the recursion
+dealer_hand = []
+def start_game():
+    init_game = input("Do you want to play a game of Black Jack? Type 'y' or 'n' ")
+    for _ in range(0, 2):
+        my_hand.append(random.choice(cards))
+        dealer_hand.append(random.choice(cards))
+    print(f"Your cards: {my_hand}, current score: {cal_sum(my_hand)}")
+    print(f"Computer's first card: {dealer_hand[0]}")
 
 
-    def start_first_game():
-        for _ in range(0,2):
-            my_random_card(cards)
-            house_random_card(cards)
-            
-        my_current_cards = sum_of_cards(my_full_hand)
-        #computer_current_cards = sum_of_cards(house_full_hand)
-        print(logo)
+def cal_sum(lst):
+    suma = 0
+    for num in my_hand:
+        suma += num
+    return suma
 
-        print(f"Your Cards: {my_full_hand}, Current Score: {my_current_cards}")
-        print(f"Computer's First Card: {house_full_hand[0]}")
+def bj_new_game():
+    should_continue = True
+    while should_continue:
+        if (input("Type 'y' to get another card, type 'n' to pass: ")).lower() == 'y':
+            my_hand.append(random.choice(cards))
+            print(f"Your cards: {my_hand}, current score: {cal_sum(my_hand)}")
+            print(f"Computer's first card: {dealer_hand[0]}")
+            print("MY HAND: ", my_hand)
+        else:
+            should_continue = False
+           # my_hand = []
+           # dealer_hand = []        
+            start_game()
+            bj_new_game()
 
-    if init_game.lower() == 'y':
-        start_first_game()
-        main()
-    else:
-        break
+start_game()
+bj_new_game()
 
 
+#my_full_hand = []
+#house_full_hand = []
+#my_sum = 0
+#my_hand = []
+#house_hand = []
+#
+#while start_game:
+#    def main():
+#        if_yes = input("Type 'y' to get another card, type 'n' to pass: ")
+#        play_game(if_yes)
+#
+#    def my_random_card(card_deck):
+#        rand_card = random.randint(0, len(card_deck) - 1)
+#        my_full_hand.append(rand_card)
+#
+#    def house_random_card(card_deck):
+#        rand_card = random.randint(0, len(card_deck) - 1)
+#        house_full_hand.append(rand_card)
+#
+#    def sum_of_cards(list_of_cards):
+#        """
+#        This function is going to print the cards sum
+#        """
+#        for num in range(0, len(list_of_cards) - 1):
+#            num1 = 0
+#            num1 = list_of_cards[num]
+#            my_sum = num1 + list_of_cards[num + 1] 
+#            return my_sum
+#    
+#    def play_game(response):
+#            #computer_final_score = sum_of_cards(my_hand)
+#            #my_final_score = sum_of_cards(house_hand)       
+#        if response.lower() == 'y':
+#            print("This is inside the while inside play_game fnct")
+#            my_random_card(cards)
+#
+#        else:
+#            computer_final_random_card = sum_of_cards(house_random_card(cards))
+#            while computer_final_random_card <= 17:
+#                house_random_card(cards)
+#                if computer_final_random_card < 17:
+#                    continue
+#                else:
+#                    print(f"Your Final Hand Cards: {my_full_hand}, Final Score: {my_final_hand}")
+#                    print(f"Computer's Final Hand: {house_full_hand}, Final Score: {computer_final_hand}")
+#
+#                    if my_final_hand > computer_final_hand:
+#                        print("YOU WON!!!")
+#                    elif my_final_hand < computer_final_hand:
+#                        print("YOU LOST!!!")
+#                    else:
+#                        print("IT's a DRAW!!!")
+#                        
+#                    start_game = False        
+#
+#            
+#            # here is when i do the recursion
+#
+#
+#    def start_first_game():
+#        for _ in range(0,2):
+#            my_random_card(cards)
+#            house_random_card(cards)
+#            
+#        my_current_cards = sum_of_cards(my_full_hand)
+#        #computer_current_cards = sum_of_cards(house_full_hand)
+#        print(logo)
+#
+#        print(f"Your Cards: {my_full_hand}, Current Score: {my_current_cards}")
+#        print(f"Computer's First Card: {house_full_hand[0]}")
+#
+#    if init_game.lower() == 'y':
+#        start_first_game()
+#        main()
+#    else:
+#        break
+#
+#
        
 ############### Blackjack Project #####################
 
