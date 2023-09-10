@@ -14,14 +14,41 @@ def start_game():
         my_hand.append(random.choice(cards))
         dealer_hand.append(random.choice(cards))
     print(f"Your cards: {my_hand}, current score: {cal_sum(my_hand)}")
-    print(f"Computer's first card: {dealer_hand[0]}")
+    #print(f"Computer's first card: {dealer_hand[0]}")
+    print(f"Computer's first card: {dealer_hand}")
+# if random.choice(cards) == 11 and cal_sum(my_hand) + 11 > 21: my_hand.append(1)
 
+def re_start_game():
+    print("This should reset the lists")
+    my_hand = []
+    dealer_hand = []
+    should_continue = False
+    print("THEY SHOULD BE EMPTY")
+    print("THIS IS MY HAND: ", my_hand)
+    print("THIS IS THE COMPUTER HAND: ", dealer_hand)
+    start_game()
+    bj_new_game()
+
+  
 
 def cal_sum(lst):
-    suma = 0
-    for num in my_hand:
-        suma += num
-    return suma
+    """ This function will calculate the score of the hands"""
+    if sum(lst) == 21 and len(lst) == 2:
+        return 0:
+
+    if 11 in lst and sum(lst) > 21:
+        lst.remove(11)
+        lst.append(1)
+        
+
+    return sum(lst)
+    #suma = 0
+    #for num in lst:
+    #    suma += num
+    #return suma
+def text_display():
+    print(f"Your Final Hand: {my_hand}, current score: {cal_sum(my_hand)}")
+    print(f"Computer's Final Hand: {dealer_hand}, Final Score: {cal_sum(dealer_hand)}")
 
 def bj_new_game():
     should_continue = True
@@ -30,16 +57,35 @@ def bj_new_game():
             my_hand.append(random.choice(cards))
             print(f"Your cards: {my_hand}, current score: {cal_sum(my_hand)}")
             print(f"Computer's first card: {dealer_hand[0]}")
-            print("MY HAND: ", my_hand)
+            if random.choice(cards) == 11 and (cal_sum(my_hand) + 11 > 21):
+                my_hand.append(1)
+            if cal_sum(my_hand) > 21:
+                text_display()
+                print("You Lost")
+                re_start_game()
+            #here can handle the sum > than 21
         else:
-            should_continue = False
+            while cal_sum(dealer_hand) < 17:
+                dealer_hand.append(random.choice(cards))
+            if cal_sum(dealer_hand) == cal_sum(my_hand):
+                text_display()
+                print("It's a DRAW!!!")
+                re_start_game()
+            elif cal_sum(dealer_hand) <= 21 and (cal_sum(dealer_hand) > cal_sum(my_hand)):
+                text_display()
+                print("You Lost")
+                re_start_game()
+            else:
+                text_display()
+                print("Opponent went over. You WIN")
+                re_start_game()
+
+            # HERE IS WHERE ALL THE OTHER LOGIC GOES
            # my_hand = []
            # dealer_hand = []        
-            start_game()
-            bj_new_game()
-
-start_game()
-bj_new_game()
+            re_start_game()
+# CREATE A FUNCT that hold start_game() and bj_new_game() to call it from dif places.
+re_start_game()
 
 
 #my_full_hand = []
