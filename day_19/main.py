@@ -1,6 +1,6 @@
 from turtle import Turtle, Screen
+import random
 
-titi = Turtle()
 screen = Screen()
 
 """
@@ -35,4 +35,47 @@ thi is a game of drawing something in the screen
 # screen.onkey(key="c", fun=clear_all)
 
 """
+screen.setup(width=500, height=400)
+
+is_race_on: False
+
+user_bet = screen.textinput(title="Make your bet", prompt="Which turtle will win the race, enter you color: ")
+
+
+colours = ["red", "orange", "yellow", "green", "blue", "purple"]
+
+y_coordinates = [-60, -30, 0, 30, 60, 90]
+
+all_turtles = []
+
+for turtle_index in range(0, 6):
+    tortugas = Turtle(shape="turtle")
+    tortugas.penup()
+    tortugas.color(colours[turtle_index])
+    tortugas.setposition(x=-240, y=y_coordinates[turtle_index])
+    all_turtles.append(tortugas)
+# this if statement check if the user has make a bet and if so chance the race to TRUE
+if user_bet:
+    is_race_on = True
+
+while is_race_on:
+
+    for turtle in all_turtles:
+
+        if turtle.xcor() > 230:
+            is_race_on = False
+            winning_color = turtle.pencolor()
+
+            if winning_color == user_bet:
+                print(f"You WON!!! the wining turtle color is: {winning_color}")
+            else:
+                print(f"You LOST!!! the wining turtle color is: {winning_color}")
+
+        x_cordinate = random.randint(0, 10)
+        turtle.forward(x_cordinate)
+
+
+
+
+
 screen.exitonclick()
